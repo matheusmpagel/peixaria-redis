@@ -1,0 +1,36 @@
+ECHO "=== CONSULTA 1: Este token é de uma sessão válida e de qual cliente? ==="
+HGETALL sessao:9f3a7c21
+HGETALL usuario:1
+
+ECHO "=== CONSULTA 2: O que tem no carrinho do usuário 11 e quanto custa cada item? ==="
+HGETALL carrinho:11
+HMGET produto:12 nome preco
+HMGET produto:3 nome preco
+HMGET produto:6 nome preco
+
+ECHO "=== CONSULTA 3: Quais são os 5 produtos mais vendidos da peixaria? ==="
+ZREVRANGE ranking:vendidos 0 4 WITHSCORES
+HGET produto:3 nome
+HGET produto:6 nome
+HGET produto:10 nome
+HGET produto:1 nome
+HGET produto:12 nome
+
+ECHO "=== CONSULTA 4: Em que posição está o Camarão rosa médio (produto 7) no ranking? ==="
+ZREVRANK ranking:vendidos 7
+ZSCORE ranking:vendidos 7
+HGET produto:7 nome
+
+ECHO "=== CONSULTA 5: Quais produtos venderam entre 100 e 200 unidades? ==="
+ZREVRANGEBYSCORE ranking:vendidos 200 100 WITHSCORES
+HGET produto:1 nome
+HGET produto:12 nome
+HGET produto:7 nome
+HGET produto:4 nome
+
+ECHO "=== PONTO FORTE (TTL): Expiração automática de sessão e carrinho ==="
+TTL sessao:9f3a7c21
+TTL carrinho:1
+HSET sessao:teste_ttl usuario_id 9 criada_em "2026-11-02T17:45:00"
+EXPIRE sessao:teste_ttl 5
+TTL sessao:teste_ttl

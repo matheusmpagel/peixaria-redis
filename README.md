@@ -32,7 +32,7 @@ docker compose down      # mantém os dados
 docker compose down -v   # apaga os dados
 ```
 
-## Carga e operações
+## Carga, operações e consultas
 
 Carrega 40 chaves (12 usuários, 15 produtos, 6 sessões, 6 carrinhos e o ranking). Apaga o que houver no banco antes, e as sessões expiram em 30 minutos, então rode logo antes de usar:
 
@@ -46,9 +46,19 @@ Roda os exemplos de inserir, consultar, atualizar e excluir:
 docker compose exec redis sh -c "redis-cli --raw < /scripts/operacoes.redis"
 ```
 
-## Modelagem
+Roda as 5 consultas do estudo de caso e a demonstração de expiração automática (TTL):
 
-Ver [docs/modelagem.md](docs/modelagem.md).
+```bash
+docker compose exec redis sh -c "redis-cli --raw < /scripts/consultas.redis"
+```
+
+> **Nota para Git Bash no Windows:** se o Git Bash converter o caminho `/scripts/...`, use `//scripts/...` (com duas barras) nos comandos acima.
+
+## Documentação da entrega
+
+- **Modelagem:** [docs/modelagem.md](docs/modelagem.md)
+- **Consultas do estudo de caso e ponto forte (TTL):** [docs/consultas.md](docs/consultas.md)
+- **Comparativo com o modelo relacional (ER, SQL e conclusão):** [docs/comparativo.md](docs/comparativo.md) e [scripts/esquema.sql](scripts/esquema.sql)
 
 ## Andamento
 
@@ -56,5 +66,5 @@ Ver [docs/modelagem.md](docs/modelagem.md).
 - [x] Modelagem
 - [x] Script de carga com 30 ou mais registros
 - [x] Exemplos de inserir, consultar, atualizar e excluir
-- [ ] 5 consultas com print do resultado, mais o TTL como ponto forte
-- [ ] Comparativo com o relacional: diagrama ER, tabelas, 2 consultas em SQL e conclusão
+- [x] 5 consultas com print do resultado, mais o TTL como ponto forte
+- [x] Comparativo com o relacional: diagrama ER, tabelas, 2 consultas em SQL e conclusão
