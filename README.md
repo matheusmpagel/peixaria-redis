@@ -32,6 +32,20 @@ docker compose down      # mantém os dados
 docker compose down -v   # apaga os dados
 ```
 
+## Carga e operações
+
+Carrega 40 chaves (12 usuários, 15 produtos, 6 sessões, 6 carrinhos e o ranking). Apaga o que houver no banco antes, e as sessões expiram em 30 minutos, então rode logo antes de usar:
+
+```bash
+docker compose exec redis sh -c "redis-cli --raw < /scripts/carga.redis"
+```
+
+Roda os exemplos de inserir, consultar, atualizar e excluir:
+
+```bash
+docker compose exec redis sh -c "redis-cli --raw < /scripts/operacoes.redis"
+```
+
 ## Modelagem
 
 Ver [docs/modelagem.md](docs/modelagem.md).
@@ -40,7 +54,7 @@ Ver [docs/modelagem.md](docs/modelagem.md).
 
 - [x] Ambiente
 - [x] Modelagem
-- [ ] Script de carga com 30 ou mais registros
-- [ ] Exemplos de inserir, consultar, atualizar e excluir
+- [x] Script de carga com 30 ou mais registros
+- [x] Exemplos de inserir, consultar, atualizar e excluir
 - [ ] 5 consultas com print do resultado, mais o TTL como ponto forte
 - [ ] Comparativo com o relacional: diagrama ER, tabelas, 2 consultas em SQL e conclusão

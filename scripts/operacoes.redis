@@ -1,0 +1,34 @@
+ECHO "=== INSERIR: usuário faz login (sessão de 30 min) ==="
+HSET sessao:a1b2c3d4 usuario_id 4 criada_em "2026-11-02T15:00:00"
+EXPIRE sessao:a1b2c3d4 1800
+
+ECHO "=== INSERIR: dois produtos no carrinho do usuário 4 (validade de 7 dias) ==="
+HSET carrinho:4 2 1 8 1
+EXPIRE carrinho:4 604800
+
+ECHO "=== CONSULTAR: de quem é a sessão? ==="
+HGETALL sessao:a1b2c3d4
+
+ECHO "=== CONSULTAR: o que tem no carrinho? ==="
+HGETALL carrinho:4
+
+ECHO "=== ATUALIZAR: mais uma unidade do produto 8 no carrinho ==="
+HINCRBY carrinho:4 8 1
+
+ECHO "=== ATUALIZAR: novo preço do produto 8 ==="
+HSET produto:8 preco 54.90
+HGET produto:8 preco
+
+ECHO "=== ATUALIZAR: venda de 2 unidades do produto 8 sobe no ranking ==="
+ZINCRBY ranking:vendidos 2 8
+
+ECHO "=== ATUALIZAR: acesso renova a sessão por mais 30 min ==="
+EXPIRE sessao:a1b2c3d4 1800
+
+ECHO "=== EXCLUIR: tira o produto 2 do carrinho ==="
+HDEL carrinho:4 2
+HGETALL carrinho:4
+
+ECHO "=== EXCLUIR: logout apaga a sessão ==="
+DEL sessao:a1b2c3d4
+EXISTS sessao:a1b2c3d4

@@ -1,0 +1,58 @@
+FLUSHDB
+
+HSET usuario:1 nome "Ana Beatriz Souza" email "ana.souza@email.com"
+HSET usuario:2 nome "Bruno Almeida" email "bruno.almeida@email.com"
+HSET usuario:3 nome "Camila Ferreira" email "camila.ferreira@email.com"
+HSET usuario:4 nome "Diego Santos" email "diego.santos@email.com"
+HSET usuario:5 nome "Elisa Rocha" email "elisa.rocha@email.com"
+HSET usuario:6 nome "Felipe Lima" email "felipe.lima@email.com"
+HSET usuario:7 nome "Gabriela Nunes" email "gabriela.nunes@email.com"
+HSET usuario:8 nome "Henrique Costa" email "henrique.costa@email.com"
+HSET usuario:9 nome "Isabela Martins" email "isabela.martins@email.com"
+HSET usuario:10 nome "João Pedro Ribeiro" email "joao.ribeiro@email.com"
+HSET usuario:11 nome "Larissa Gomes" email "larissa.gomes@email.com"
+HSET usuario:12 nome "Marcos Vieira" email "marcos.vieira@email.com"
+
+HSET produto:1 nome "Filé de salmão fresco (kg)" preco 89.90 categoria "peixes"
+HSET produto:2 nome "Cauda de lagosta (kg)" preco 249.90 categoria "frutos-do-mar"
+HSET produto:3 nome "Filé de tilápia (kg)" preco 44.90 categoria "peixes"
+HSET produto:4 nome "Tainha inteira (kg)" preco 24.90 categoria "peixes"
+HSET produto:5 nome "Bacalhau do Porto (kg)" preco 129.90 categoria "salgados"
+HSET produto:6 nome "Sardinha limpa (kg)" preco 14.90 categoria "peixes"
+HSET produto:7 nome "Camarão rosa médio (kg)" preco 89.90 categoria "frutos-do-mar"
+HSET produto:8 nome "Anéis de lula (kg)" preco 59.90 categoria "frutos-do-mar"
+HSET produto:9 nome "Polvo limpo (kg)" preco 99.90 categoria "frutos-do-mar"
+HSET produto:10 nome "Mexilhão sem casca (kg)" preco 39.90 categoria "frutos-do-mar"
+HSET produto:11 nome "Posta de atum congelada (kg)" preco 69.90 categoria "congelados"
+HSET produto:12 nome "Filé de merluza congelado (kg)" preco 34.90 categoria "congelados"
+HSET produto:13 nome "Anchova defumada (kg)" preco 74.90 categoria "defumados"
+HSET produto:14 nome "Caldo de peixe caseiro (500 ml)" preco 18.90 categoria "preparados"
+HSET produto:15 nome "Kit moqueca para 4 pessoas" preco 119.90 categoria "preparados"
+
+HSET sessao:9f3a7c21 usuario_id 1 criada_em "2026-11-02T14:05:00"
+EXPIRE sessao:9f3a7c21 1800
+HSET sessao:b81e04d6 usuario_id 2 criada_em "2026-11-02T14:12:00"
+EXPIRE sessao:b81e04d6 1800
+HSET sessao:c47d92ea usuario_id 3 criada_em "2026-11-02T14:18:00"
+EXPIRE sessao:c47d92ea 1800
+HSET sessao:d05b16f3 usuario_id 5 criada_em "2026-11-02T14:21:00"
+EXPIRE sessao:d05b16f3 1800
+HSET sessao:e6128ab9 usuario_id 8 criada_em "2026-11-02T14:30:00"
+EXPIRE sessao:e6128ab9 1800
+HSET sessao:f72c58d0 usuario_id 11 criada_em "2026-11-02T14:33:00"
+EXPIRE sessao:f72c58d0 1800
+
+HSET carrinho:1 1 1 3 2
+EXPIRE carrinho:1 604800
+HSET carrinho:2 5 1 6 1 13 1
+EXPIRE carrinho:2 604800
+HSET carrinho:3 10 1
+EXPIRE carrinho:3 604800
+HSET carrinho:5 14 2 15 1
+EXPIRE carrinho:5 604800
+HSET carrinho:8 9 1 4 1
+EXPIRE carrinho:8 604800
+HSET carrinho:11 12 1 3 1 6 2
+EXPIRE carrinho:11 604800
+
+ZADD ranking:vendidos 342 3 298 6 251 10 187 1 164 12 133 7 121 4 98 14 87 13 76 15 64 8 52 11 41 5 33 9 27 2
