@@ -19,20 +19,9 @@ docker compose exec redis redis-cli ping
 
 O último comando deve responder `PONG`.
 
-Para abrir o terminal do Redis:
-
-```bash
-docker compose exec redis redis-cli
-```
-
-Para desligar:
-
-```bash
-docker compose down      # mantém os dados
-docker compose down -v   # apaga os dados
-```
-
 ## Carga, operações e consultas
+
+> **Atenção:** os comandos abaixo devem ser rodados direto no terminal do sistema (`PS C:\...>` ou bash), **fora** do prompt `127.0.0.1:6379>` do `redis-cli` (se estiver dentro dele, digite `exit` para sair).
 
 Carrega 40 chaves (12 usuários, 15 produtos, 6 sessões, 6 carrinhos e o ranking). Apaga o que houver no banco antes, e as sessões expiram em 30 minutos, então rode logo antes de usar:
 
@@ -53,6 +42,23 @@ docker compose exec redis sh -c "redis-cli --raw < /scripts/consultas.redis"
 ```
 
 > **Nota para Git Bash no Windows:** se o Git Bash converter o caminho `/scripts/...`, use `//scripts/...` (com duas barras) nos comandos acima.
+
+## Uso interativo e desligamento
+
+Para abrir o terminal interativo do Redis (`127.0.0.1:6379>`) e digitar comandos avulsos (`HGETALL`, `ZREVRANGE`, `TTL`, etc.):
+
+```bash
+docker compose exec redis redis-cli
+```
+
+Para sair do `redis-cli` e voltar ao terminal normal, digite `exit`.
+
+Para desligar o container:
+
+```bash
+docker compose down      # mantém os dados
+docker compose down -v   # apaga os dados
+```
 
 ## Documentação da entrega
 
